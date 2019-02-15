@@ -79,15 +79,15 @@ const loadAllAssets = (opts: Options) => {
     return new Promise((resolve, reject) => {
         transformOptsWithAssets(opts).then(() => {
             const scriptsPromise = opts.scripts.reduce(
-                (prev: Promise<undefined>, fileName: string) => prev.then(loadScriptTag(`${opts.baseHref}/${fileName}`)),
+                (prev: Promise<undefined>, fileName: string) => prev.then(loadScriptTag({url: fileName, baseHref: opts.baseHref})),
                 Promise.resolve(undefined)
             );
             const stylesPromise = opts.styles.reduce(
-                (prev: Promise<undefined>, fileName: string) => prev.then(loadLinkTag(`${opts.baseHref}/${fileName}`)),
+                (prev: Promise<undefined>, fileName: string) => prev.then(loadLinkTag({url: fileName, baseHref: opts.baseHref})),
                 Promise.resolve(undefined)
             );
             Promise.all([scriptsPromise, stylesPromise]).then(resolve, reject);
-        }, reject);
+        }, reject); 
     });
 };
 
@@ -102,7 +102,12 @@ const hashCode = (str: string): string => {
     return hash.toString();
 };
 
-const loadScriptTag = (url: string) => {
+const isAbsoluteUrl = (url: string) => {
+    return /^[a-z][a-z0-9+.-]*:/.test(url);
+}
+// Check to see if the url is an absolute or relative path.
+// If it is a relative path: append the baseHref so that proxy will properly retrieve them 
+const loadScriptTag = (scriptOpts: {url: string, baseHref: string}) => {
     return () => {
         return new Promise((resolve, reject) => {
             const script = document.createElement('script');
@@ -112,14 +117,20 @@ const loadScriptTag = (url: string) => {
             script.onerror = err => {
                 reject(err);
             };
-            script.src = url;
-            script.id = hashCode(url);
+
+            if (isAbsoluteUrl(scriptOpts.url)){
+                script.src = scriptOpts.url;
+                script.id = hashCode(scriptOpts.url); 
+            } else {
+                script.src = `${scriptOpts.baseHref}/${scriptOpts.url}`;
+                script.id = hashCode(`${scriptOpts.baseHref}/${scriptOpts.url}`); 
+            }
             document.head.appendChild(script);
         });
     };
 };
 
-const loadLinkTag = (url: string) => {
+const loadLinkTag = (scriptOpts: {url: string, baseHref: string}) => {
     return () => {
         return new Promise((resolve, reject) => {
             const link = document.createElement('link');
@@ -129,9 +140,14 @@ const loadLinkTag = (url: string) => {
             link.onerror = err => {
                 reject(err);
             };
-            link.href = url;
+            if(isAbsoluteUrl(scriptOpts.url)) {
+                link.href = scriptOpts.url;
+                link.id = hashCode(scriptOpts.url);
+            } else {
+                link.href = `${scriptOpts.baseHref}/${scriptOpts.url}`;
+                link.id = hashCode(`${scriptOpts.baseHref}/${scriptOpts.url}`);
+            }
             link.rel = 'stylesheet';
-            link.id = hashCode(url);
             document.head.appendChild(link);
         });
     };

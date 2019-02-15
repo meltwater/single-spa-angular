@@ -63,6 +63,7 @@ SingleSpaModule.decorators = [
                 ]
             },] },
 ];
+SingleSpaModule.ctorParameters = function () { return []; };
 
 export { SingleSpaModule, SingleSpaRouterLinkDirective as ɵa, SingleSpaRouterService as ɵb };
 //# sourceMappingURL=single-spa-angular-cli.js.map
