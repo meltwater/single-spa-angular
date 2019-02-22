@@ -1,4 +1,5 @@
 import { Options } from './options.model';
+import { getContainerElement } from './loader-utils';
 
 declare const window: any;
 window.singleSpaAngularCli = window.singleSpaAngularCli || {};
@@ -35,15 +36,7 @@ const transformOptsWithAssets = (opts: Options): Promise<null> => {
     });
 };
 
-const getContainerEl = (opts: Options) => {
-    let el = document.querySelector(opts.selector);
-    if (!el) {
-        el = document.createElement(opts.selector);
-        let container = opts.container ? document.querySelector(opts.container) : document.body;
-        container.appendChild(el);
-    }
-    return el;
-};
+
 
 const noLoadingApp = (currentApp: string, singleSpa: any) => {
     const { getAppNames, getAppStatus, BOOTSTRAPPING } = singleSpa
@@ -174,7 +167,7 @@ const bootstrap = (opts: Options, props: any) => {
 
 const mount = (opts: Options, props: any) => {
     return new Promise((resolve, reject) => {
-        getContainerEl(opts);
+        getContainerElement(opts);
         if (window.singleSpaAngularCli[opts.name]) {
             window.singleSpaAngularCli[opts.name].mount(props);
             resolve();
@@ -190,7 +183,7 @@ const unmount = (opts: Options, props: any) => {
     return new Promise((resolve, reject) => {
         if (window.singleSpaAngularCli[opts.name]) {
             window.singleSpaAngularCli[opts.name].unmount();
-            const container = getContainerEl(opts);
+            const container = getContainerElement(opts);
             if(container.parentNode) {
                 container.parentNode.removeChild(container);
             }
