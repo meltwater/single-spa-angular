@@ -1,5 +1,5 @@
 import { Options } from './options.model';
-import { getContainerElement } from './loader-utils';
+import { getContainerElement, isAbsoluteUrl, hashCode } from './loader-utils';
 
 declare const window: any;
 window.singleSpaAngularCli = window.singleSpaAngularCli || {};
@@ -84,20 +84,7 @@ const loadAllAssets = (opts: Options) => {
     });
 };
 
-const hashCode = (str: string): string => {
-    let hash = 0;
-    if (str.length === 0) return hash.toString();
-    for (let i = 0; i < str.length; i++) {
-        hash = (hash << 5) - hash + str.charCodeAt(i);
-        hash = hash & hash;
-        hash = hash >>> 1;
-    }
-    return hash.toString();
-};
 
-const isAbsoluteUrl = (url: string) => {
-    return /^[a-z][a-z0-9+.-]*:/.test(url);
-}
 // Check to see if the url is an absolute or relative path.
 // If it is a relative path: append the baseHref so that proxy will properly retrieve them 
 const loadScriptTag = (scriptOpts: {url: string, baseHref: string}) => {
