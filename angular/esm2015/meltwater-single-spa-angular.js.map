@@ -1,10 +1,10 @@
 {
   "version": 3,
-  "file": "single-spa-angular-cli.js",
+  "file": "meltwater-single-spa-angular.js",
   "sources": [
-    "ng://single-spa-angular-cli/out/single-spa.module.ts",
-    "ng://single-spa-angular-cli/out/router/single-spa-router-link.directive.ts",
-    "ng://single-spa-angular-cli/out/router/single-spa-router.service.ts"
+    "ng://@meltwater/single-spa-angular/out/single-spa.module.ts",
+    "ng://@meltwater/single-spa-angular/out/router/single-spa-router-link.directive.ts",
+    "ng://@meltwater/single-spa-angular/out/router/single-spa-router.service.ts"
   ],
   "sourcesContent": [
     "import { NgModule, ElementRef } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { SingleSpaRouterLinkDirective } from './router/single-spa-router-link.directive';\nimport { SingleSpaRouterService } from './router/single-spa-router.service';\n\n@NgModule({\n  imports: [\n    CommonModule\n  ],\n  declarations: [\n    SingleSpaRouterLinkDirective\n  ],\n  exports: [\n    SingleSpaRouterLinkDirective\n  ],\n  providers: [\n    SingleSpaRouterService\n  ]\n})\nexport class SingleSpaModule { }\n",

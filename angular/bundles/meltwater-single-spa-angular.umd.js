@@ -1,5 +1,8 @@
-import { Injectable, Directive, HostListener, Input, HostBinding, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common'], factory) :
+	(factory((global.meltwater = global.meltwater || {}, global.meltwater['single-spa-angular'] = {}),global.ng.core,global.ng.common));
+}(this, (function (exports,core,common) { 'use strict';
 
 var SingleSpaRouterService = /** @class */ (function () {
     function SingleSpaRouterService() {
@@ -14,7 +17,7 @@ var SingleSpaRouterService = /** @class */ (function () {
     return SingleSpaRouterService;
 }());
 SingleSpaRouterService.decorators = [
-    { type: Injectable },
+    { type: core.Injectable },
 ];
 SingleSpaRouterService.ctorParameters = function () { return []; };
 var SingleSpaRouterLinkDirective = /** @class */ (function () {
@@ -30,7 +33,7 @@ var SingleSpaRouterLinkDirective = /** @class */ (function () {
     return SingleSpaRouterLinkDirective;
 }());
 SingleSpaRouterLinkDirective.decorators = [
-    { type: Directive, args: [{
+    { type: core.Directive, args: [{
                 selector: '[singleSpaRouterLink]'
             },] },
 ];
@@ -38,9 +41,9 @@ SingleSpaRouterLinkDirective.ctorParameters = function () { return [
     { type: SingleSpaRouterService, },
 ]; };
 SingleSpaRouterLinkDirective.propDecorators = {
-    "singleSpaRouterLink": [{ type: Input },],
-    "href": [{ type: HostBinding, args: ['href',] },],
-    "onClick": [{ type: HostListener, args: ['click', ['$event'],] },],
+    "singleSpaRouterLink": [{ type: core.Input },],
+    "href": [{ type: core.HostBinding, args: ['href',] },],
+    "onClick": [{ type: core.HostListener, args: ['click', ['$event'],] },],
 };
 var SingleSpaModule = /** @class */ (function () {
     function SingleSpaModule() {
@@ -48,9 +51,9 @@ var SingleSpaModule = /** @class */ (function () {
     return SingleSpaModule;
 }());
 SingleSpaModule.decorators = [
-    { type: NgModule, args: [{
+    { type: core.NgModule, args: [{
                 imports: [
-                    CommonModule
+                    common.CommonModule
                 ],
                 declarations: [
                     SingleSpaRouterLinkDirective
@@ -65,5 +68,11 @@ SingleSpaModule.decorators = [
 ];
 SingleSpaModule.ctorParameters = function () { return []; };
 
-export { SingleSpaModule, SingleSpaRouterLinkDirective as ɵa, SingleSpaRouterService as ɵb };
-//# sourceMappingURL=single-spa-angular-cli.js.map
+exports.SingleSpaModule = SingleSpaModule;
+exports.ɵa = SingleSpaRouterLinkDirective;
+exports.ɵb = SingleSpaRouterService;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=meltwater-single-spa-angular.umd.js.map

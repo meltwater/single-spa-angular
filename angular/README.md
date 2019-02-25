@@ -1,3 +1,6 @@
+## Forked from 
+(https://github.com/PlaceMe-SAS/single-spa-angular-cli)
+
 # single-spa-angular-cli
 Helpers for building [single-spa](https://github.com/CanopyTax/single-spa) applications which use Angular Cli.
 
@@ -46,3 +49,6 @@ All options are passed to single-spa-angular2 via the `opts` parameter when call
 
 ## Full documentation here
 An example can be found in the [single-spa-angular-cli-examples](https://github.com/PlaceMe-SAS/single-spa-angular-cli-examples) repository.
+
+## How it works
+TODO; 

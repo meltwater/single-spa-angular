@@ -1,9 +1,9 @@
 {
-  "name": "single-spa-angular-cli",
-  "version": "0.4.2",
-  "description": "Helpers for building single-spa applications which use Angular Cli",
-  "main": "bundles/single-spa-angular-cli.umd.js",
-  "typings": "single-spa-angular-cli.d.ts",
+  "name": "@meltwater/single-spa-angular",
+  "version": "0.5.2",
+  "description": "Helpers for building single-spa applications using angular or angularjs with ng-metadata",
+  "main": "bundles/meltwater-single-spa-angular.umd.js",
+  "typings": "meltwater-single-spa-angular.d.ts",
   "scripts": {
     "build": "rimraf lib && tsc && babel src --out-dir lib && ng-packagr -p ng-package.json",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,19 +11,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:PlaceMe-SAS/single-spa-angular-cli.git"
+    "url": "git@github.com:@meltwater/single-spa-angular.git"
   },
   "keywords": [
     "single-spa",
+    "singlespa",
+    "microfrontend",
+    "micro-frontend",
     "angular",
-    "cli"
+    "angularjs"
   ],
-  "author": "Robin Coma Delperier",
+  "author": "Cosmos @ Meltwater",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/PlaceMe-SAS/single-spa-angular-cli/issues"
+    "url": "https://github.com/meltwater/single-spa-angular/issues"
   },
-  "homepage": "https://github.com/PlaceMe-SAS/single-spa-angular-cli#readme",
+  "homepage": "https://github.com/meltwater/single-spa-angular",
   "dependencies": {
     "tslib": "^1.7.1"
   },
@@ -54,7 +57,7 @@
     "@types/core-js": "^0.9.45",
     "rxjs": "^5.5.6"
   },
-  "module": "esm5/single-spa-angular-cli.js",
-  "es2015": "esm2015/single-spa-angular-cli.js",
-  "metadata": "single-spa-angular-cli.metadata.json"
+  "module": "esm5/meltwater-single-spa-angular.js",
+  "es2015": "esm2015/meltwater-single-spa-angular.js",
+  "metadata": "meltwater-single-spa-angular.metadata.json"
 }

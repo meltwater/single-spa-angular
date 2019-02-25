@@ -21,14 +21,13 @@
     "angular",
     "angularjs"
   ],
-  "author": "Robin Coma Delperier",
+  "author": "Cosmos @ Meltwater",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/meltwater/single-spa-angular/issues"
   },
   "homepage": "https://github.com/meltwater/single-spa-angular",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@angular/common": "^5.2.9",
     "@angular/compiler": "^5.2.9",

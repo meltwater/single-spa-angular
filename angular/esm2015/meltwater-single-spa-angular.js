@@ -101,4 +101,4 @@ SingleSpaModule.ctorParameters = () => [];
  */
 
 export { SingleSpaModule, SingleSpaRouterLinkDirective as ɵa, SingleSpaRouterService as ɵb };
-//# sourceMappingURL=single-spa-angular-cli.js.map
+//# sourceMappingURL=meltwater-single-spa-angular.js.map
