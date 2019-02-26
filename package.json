@@ -1,6 +1,6 @@
 {
   "name": "@meltwater/single-spa-angular",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Helpers for building single-spa applications using angular or angularjs with ng-metadata",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",

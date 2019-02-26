@@ -2,7 +2,7 @@ import { Options } from './options.model';
 import { getContainerElement, isAbsoluteUrl, hashCode } from './loader-utils';
 
 declare const window: any;
-window.singleSpaAngularCli = window.singleSpaAngularCli || {};
+window.meltwaterSingleSpaAngular = window.meltwaterSingleSpaAngular || {};
 
 const xmlToAssets = (xml: string): { styles: string[], scripts: string[] } => {
     const dom = document.createElement('html');
@@ -144,7 +144,7 @@ const unloadTag = (url: string) => {
 };
 
 const bootstrap = (opts: Options, props: any) => {
-    window.singleSpaAngularCli.isSingleSpa = true;
+    window.meltwaterSingleSpaAngular.isSingleSpa = true;
     return new Promise((resolve, reject) => {
         onNotLoadingApp(opts.name, props).then(() => {
             loadAllAssets(opts).then(resolve, reject);
@@ -155,8 +155,8 @@ const bootstrap = (opts: Options, props: any) => {
 const mount = (opts: Options, props: any) => {
     return new Promise((resolve, reject) => {
         getContainerElement(opts);
-        if (window.singleSpaAngularCli[opts.name]) {
-            window.singleSpaAngularCli[opts.name].mount(props);
+        if (window.meltwaterSingleSpaAngular[opts.name]) {
+            window.meltwaterSingleSpaAngular[opts.name].mount(props);
             resolve();
         } else {
             console.error(`Cannot mount ${opts.name} because that is not bootstraped`);
@@ -168,8 +168,8 @@ const mount = (opts: Options, props: any) => {
 const unmount = (opts: Options, props: any) => {
     const { singleSpa: { unloadApplication, getAppNames } } = props;
     return new Promise((resolve, reject) => {
-        if (window.singleSpaAngularCli[opts.name]) {
-            window.singleSpaAngularCli[opts.name].unmount();
+        if (window.meltwaterSingleSpaAngular[opts.name]) {
+            window.meltwaterSingleSpaAngular[opts.name].unmount();
             const container = getContainerElement(opts);
             if(container.parentNode) {
                 container.parentNode.removeChild(container);
@@ -198,15 +198,15 @@ const unload = (opts: Options, props: any) => {
 
 export function loader(opts: Options) {
     if (typeof opts !== 'object') {
-        throw new Error(`single-spa-angular-cli requires a configuration object`);
+        throw new Error(`@meltwater/single-spa-angular requires a configuration object`);
     }
 
     if (typeof opts.name !== 'string') {
-        throw new Error(`single-spa-angular-cli must be passed opts.name string (ex : app1)`);
+        throw new Error(`@meltwater/single-spa-angular must be passed opts.name string (ex : app1)`);
     }
 
     if (typeof opts.baseHref !== 'string') {
-        throw new Error(`single-spa-angular-cli must be passed opts.baseHref string (ex : /app1)`);
+        throw new Error(`@meltwater/single-spa-angular must be passed opts.baseHref string (ex : /app1)`);
     }
 
     return {

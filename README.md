@@ -1,6 +1,8 @@
 ## Forked from 
 (https://github.com/PlaceMe-SAS/single-spa-angular-cli)
 
+<span style="color:red">**Warning: Readme not yet updated for @meltwater version**</span>
+
 # single-spa-angular-cli
 Helpers for building [single-spa](https://github.com/CanopyTax/single-spa) applications which use Angular Cli.
 

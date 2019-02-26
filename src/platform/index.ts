@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
 declare const window: any;
-window.singleSpaAngularCli = window.singleSpaAngularCli || {};
+window.meltwaterSingleSpaAngular = window.meltwaterSingleSpaAngular || {};
 
 export class Platform {
 
@@ -14,8 +14,8 @@ export class Platform {
         this.router = router;
         return Observable.create((observer: Observer<any>) => {
             if (this.isSingleSpaApp()) {
-                window.singleSpaAngularCli[this.name] = window.singleSpaAngularCli[this.name] || {};
-                window.singleSpaAngularCli[this.name].mount = (props: any) => {
+                window.meltwaterSingleSpaAngular[this.name] = window.meltwaterSingleSpaAngular[this.name] || {};
+                window.meltwaterSingleSpaAngular[this.name].mount = (props: any) => {
                     observer.next({ props, attachUnmount: this.unmount.bind(this) });
                     observer.complete();
                 };
@@ -28,7 +28,7 @@ export class Platform {
 
     unmount(module: any) {
         if (this.isSingleSpaApp()) {
-            window.singleSpaAngularCli[this.name].unmount = () => {
+            window.meltwaterSingleSpaAngular[this.name].unmount = () => {
                 if (module) {
                     module.destroy();
                     if (this.router) {
@@ -40,6 +40,6 @@ export class Platform {
     }
 
     private isSingleSpaApp(): boolean {
-        return window.singleSpaAngularCli.isSingleSpa;
+        return window.meltwaterSingleSpaAngular.isSingleSpa;
     }
 }
