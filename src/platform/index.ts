@@ -9,14 +9,14 @@ export class Platform {
     name: string;
     router: any;
 
-    mount(name: string, router?: any): Observable<any> {
+    mount(name: string, container: string, selector: string, router?: any): Observable<any> {
         this.name = name;
         this.router = router;
         return Observable.create((observer: Observer<any>) => {
             if (this.isSingleSpaApp()) {
                 window.meltwaterSingleSpaAngular[this.name] = window.meltwaterSingleSpaAngular[this.name] || {};
                 window.meltwaterSingleSpaAngular[this.name].mount = (props: any) => {
-                    observer.next({ props, attachUnmount: this.unmount.bind(this) });
+                    observer.next({ props: {...props, container,selector}, attachUnmount: this.unmount.bind(this) });
                     observer.complete();
                 };
             } else {

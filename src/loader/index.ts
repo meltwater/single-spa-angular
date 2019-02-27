@@ -50,7 +50,7 @@ const noLoadingApp = (currentApp: string, singleSpa: any) => {
 
 const onNotLoadingApp = (currentApp: string, props: any) => {
     const { singleSpa } = props;
-    const bootstrapMaxTime = props.bootstrapMaxTime || 3000;
+    const bootstrapMaxTime = props.bootstrapMaxTime || 10000;
     return new Promise((resolve, reject) => {
         let time = 0;
         const INTERVAL = 100;
@@ -189,7 +189,13 @@ const unmount = (opts: Options, props: any) => {
 const unload = (opts: Options, props: any) => {
     return new Promise((resolve, reject) => {
         opts.scripts.concat(opts.styles).reduce(
-            (prev: Promise<undefined>, scriptName: string) => prev.then(unloadTag(`${opts.baseHref}/${scriptName}`)),
+            (prev: Promise<undefined>, scriptName: string) => {
+                let tag = `${opts.baseHref}/${scriptName}`;
+                if(isAbsoluteUrl(scriptName)){
+                    tag = scriptName;
+                }
+                return prev.then(unloadTag(tag));
+            },
             Promise.resolve(undefined)
         );
         resolve();
