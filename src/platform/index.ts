@@ -30,7 +30,22 @@ export class Platform {
         if (this.isSingleSpaApp()) {
             window.meltwaterSingleSpaAngular[this.name].unmount = () => {
                 if (module) {
-                    module.destroy();
+                    console.log(`the module ${this.name} is: `);
+                    console.log(module);
+                    // This should be the case for angular cli projects
+                    if (typeof module.destroy === "function") {
+                        console.log('destroy() available, calling module.destroy'); // log it out just for now
+                        module.destroy();
+                    }
+                    // This should be the case for angularjs projects
+                    else if (typeof module.$destroy === "function") {
+                        console.log('$destroy() available, calling module.$destroy'); // log it out just for now
+                        module.$destroy();
+                    }
+                    else {
+                        console.log(`No destroy function available on the module for "${this.name}" `);
+                    }
+
                     if (this.router) {
                         module.injector.get(this.router).dispose();
                     }

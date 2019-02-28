@@ -154,7 +154,7 @@ const bootstrap = (opts: Options, props: any) => {
 
 const mount = (opts: Options, props: any) => {
     return new Promise((resolve, reject) => {
-        getContainerElement(opts);
+        props.element = getContainerElement(opts);
         if (window.meltwaterSingleSpaAngular[opts.name]) {
             window.meltwaterSingleSpaAngular[opts.name].mount(props);
             resolve();
