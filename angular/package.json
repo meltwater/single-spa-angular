@@ -1,6 +1,6 @@
 {
   "name": "@meltwater/single-spa-angular",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Helpers for building single-spa applications using angular or angularjs with ng-metadata",
   "main": "bundles/meltwater-single-spa-angular.umd.js",
   "typings": "meltwater-single-spa-angular.d.ts",
